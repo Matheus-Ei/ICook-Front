@@ -12,8 +12,6 @@ export const useLogin = () => {
   const makeLogin = async (email: string, password: string) => {
     setUserData({ email: null });
 
-    // Here you would typically make an API call to your backend for authentication.
-    // TODO: Replace this mock logic with real authentication logic.
     const response = await userService.login(email, password)
     if (response === true) {
       setUserData({ email });

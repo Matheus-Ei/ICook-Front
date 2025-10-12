@@ -8,7 +8,7 @@ export interface ResponseType<T = object> {
 
 export type ReturnType<T> = Promise<T | undefined>;
 
-export class RequestUtil {
+class RequestUtil {
   private backendUrl = "http://localhost:5000";
 
   private treatError = (error: AxiosError) => {

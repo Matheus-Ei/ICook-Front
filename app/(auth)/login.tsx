@@ -17,7 +17,7 @@ export default function LoginScreen() {
     const response = await userData.makeLogin(email, password);
 
     if (response.success) {
-      router.replace("/");
+      router.replace("/forYou");
     }
   };
 

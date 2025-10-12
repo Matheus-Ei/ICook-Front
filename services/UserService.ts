@@ -1,27 +1,23 @@
+import { requestUtil } from "@/utils/RequestUtil";
+
 class UserService {
   public async login(email: string, password: string): Promise<boolean> {
     try {
-      // Logic to handle login, e.g., storing a token
-      if (email === "test@test.com" && password === "test") {
-        return true;
-      } 
-
-      return false;
+      await requestUtil.post("users/auth", { email, password });
+      return true;
     } catch (error) {
-      throw new Error(`Error making login with ${email}. Error: ${error}`);
+      console.error("Login error:", error);
+      return false;
     }
   }
 
   public async signup(name: string, email: string, password: string): Promise<boolean> {
     try {
-      // Logic to handle signup, e.g., sending data to a backend
-      if (name && email && password) {
-        return true;
-      }
-
-      return false;
+      await requestUtil.post("users", { name, email, password });
+      return true;
     } catch (error) {
-      throw new Error(`Error making login with ${name}, ${email}. Error: ${error}`);
+      console.error("Signup error:", error);
+      return false;
     }
   }
 }
