@@ -12,7 +12,7 @@ export const useLogin = () => {
   const makeLogin = async (email: string, password: string) => {
     setUserData({ email: null });
 
-    const response = await userService.login(email, password)
+    const response = await userService.login(email, password);
     if (response === true) {
       setUserData({ email });
 

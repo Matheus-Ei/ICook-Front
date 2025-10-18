@@ -11,14 +11,12 @@ class UserService {
     }
   }
 
-  public async signup(name: string, email: string, password: string): Promise<boolean> {
-    try {
-      await requestUtil.post("users", { name, email, password });
-      return true;
-    } catch (error) {
-      console.error("Signup error:", error);
-      return false;
-    }
+  public async signup(
+    name: string,
+    email: string,
+    password: string,
+  ) {
+    return await requestUtil.post("users", { name, email, password });
   }
 }
 

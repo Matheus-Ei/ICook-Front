@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError } from "axios";
 
 export interface ResponseType<T = object> {
   message: string;
@@ -15,8 +15,8 @@ class RequestUtil {
     if (error.response) {
       const { data } = error.response;
 
-      if (data && typeof data === 'object' && 'message' in data) {
-        const unknownError = 'Unknown error on server';
+      if (data && typeof data === "object" && "message" in data) {
+        const unknownError = "Unknown error on server";
 
         const errorMessage = (data as ResponseType).message || unknownError;
         const consoleError = (data as ResponseType).error;
@@ -30,7 +30,7 @@ class RequestUtil {
         throw new Error(error.message);
       }
     } else if (error.request) {
-      throw new Error('No response recived');
+      throw new Error("No response recived");
     } else {
       throw new Error(error.message);
     }

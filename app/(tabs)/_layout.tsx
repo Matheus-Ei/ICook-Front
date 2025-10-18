@@ -21,7 +21,7 @@ export default function TabLayout() {
   const router = useRouter();
 
   // Check for userEmail in storage to determine if user is logged in
-  storageUtil.getItem('userEmail').then((value) => {
+  storageUtil.getItem("userEmail").then((value) => {
     if (!value) {
       router.replace("/login");
     }
@@ -37,8 +37,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="forYou"
         options={{
-          title: '',
-          headerTitle: 'For you',
+          title: "",
+          headerTitle: "For you",
           tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
         }}
       />
@@ -46,8 +46,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: '',
-          headerTitle: 'Profile',
+          title: "",
+          headerTitle: "Profile",
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />

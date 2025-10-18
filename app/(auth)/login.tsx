@@ -5,10 +5,12 @@ import Themed from "@/components/Themed";
 import { useLogin } from "@/hooks/useLogin";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+import { Message } from "@/components/Message";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const userData = useLogin();
   const router = useRouter();
@@ -18,36 +20,45 @@ export default function LoginScreen() {
 
     if (response.success) {
       router.replace("/forYou");
+      return;
     }
+
+    setError(response.message || "Login failed");
   };
 
   return (
     <Themed.View style={styles.container}>
       <Themed.Image source={logo} style={{ width: 300, height: 300 }} />
 
-      <Themed.TextInput 
+
+      <Themed.TextInput
         style={styles.input}
-        placeholder="Email" 
-        onChangeText={setEmail} 
+        placeholder="Email"
+        onChangeText={setEmail}
       />
 
-      <Themed.TextInput 
-        style={styles.input} 
-        placeholder="Password" 
-        secureTextEntry 
-        onChangeText={setPassword} 
+      <Themed.TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry
+        onChangeText={setPassword}
       />
 
       <Themed.TouchableOpacity onPress={handleLogin}>
         <Themed.Text>Login</Themed.Text>
       </Themed.TouchableOpacity>
 
-      <Themed.TouchableOpacity onPress={() => router.push("/signup")} style={styles.signupLinkContainer}>
+      <Themed.TouchableOpacity
+        onPress={() => router.push("/signup")}
+        style={styles.signupLinkContainer}
+      >
         <Themed.Text>
           Don't have an account?
           <Themed.Text style={styles.boldSignupLink}>Sign up</Themed.Text>
         </Themed.Text>
       </Themed.TouchableOpacity>
+
+      <Message text={error} type={"error"} isVisible={!!error} />
     </Themed.View>
   );
 }
@@ -73,9 +84,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  boldSignupLink: { 
+  boldSignupLink: {
     marginLeft: 5,
-    fontWeight: "bold", 
-    textDecorationLine: 'underline' 
-  }
+    fontWeight: "bold",
+    textDecorationLine: "underline",
+  },
 });
