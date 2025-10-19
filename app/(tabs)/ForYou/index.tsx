@@ -2,7 +2,7 @@ import { Text } from "@/components/Text";
 import { View } from "@/components/View";
 import { StyleSheet } from "react-native";
 
-export default function ForYouTab() {
+const ForYouTab = () => {
   return (
     <View style={styles.container}>
       <Text text="Tab One Screen" />
@@ -23,3 +23,5 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+
+export default ForYouTab;

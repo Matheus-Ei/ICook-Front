@@ -11,7 +11,7 @@ import { TextInput } from "@/components/TextInput";
 import { TouchableOpacity } from "@/components/TouchableOpacity";
 import { Text } from "@/components/Text";
 
-export default function SignupScreen() {
+const SignupScreen = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,9 +52,7 @@ export default function SignupScreen() {
         onChangeText={setPassword}
       />
 
-      <TouchableOpacity onPress={handleSignup}>
-        <Text>Signup</Text>
-      </TouchableOpacity>
+      <TouchableOpacity onPress={handleSignup}>Sign Up</TouchableOpacity>
 
       <Message text={error} type={"error"} isVisible={!!error} />
     </View>
@@ -73,3 +71,5 @@ const styles = StyleSheet.create({
     height: 45,
   },
 });
+
+export default SignupScreen;

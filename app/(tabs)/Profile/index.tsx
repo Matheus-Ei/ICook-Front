@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { userService } from "@/services/UserService";
-import { LoadingIndicator } from "@/components/Loader";
+import { Loader } from "@/components/Loader";
 import { Message } from "@/components/Message";
 import { UserProfileCard } from "./UserProfileCard";
 import { View } from "@/components/View";
@@ -13,7 +13,7 @@ export interface User {
   followersCount: string;
 }
 
-export default function ProfileTab() {
+const ProfileTab = () => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,7 +44,7 @@ export default function ProfileTab() {
 
   const renderProfile = () => {
     if (isLoading) {
-      return <LoadingIndicator />;
+      return <Loader />;
     }
 
     if (error) {
@@ -73,3 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
+export default ProfileTab;

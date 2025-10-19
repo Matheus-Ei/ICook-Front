@@ -4,10 +4,10 @@ import { View } from "./View";
 import { Text } from "./Text";
 import Colors from "@/constants/Colors";
 
-export const LoadingIndicator = () => (
+export const Loader = () => (
   <View style={styles.container}>
     <ActivityIndicator size="large" color={Colors.primary} />
-    <Text style={styles.loadingText}>Loading profile...</Text>
+    <Text style={styles.loadingText} text="Loading..." />
   </View>
 );
 

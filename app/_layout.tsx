@@ -13,7 +13,7 @@ export const unstable_settings = {
 
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+const RootLayout = () => {
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
@@ -36,7 +36,7 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
-async function RootLayoutNav() {
+const RootLayoutNav = async () => {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -46,3 +46,5 @@ async function RootLayoutNav() {
     </Stack>
   );
 }
+
+export default RootLayout;
