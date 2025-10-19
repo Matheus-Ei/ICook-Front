@@ -1,4 +1,3 @@
-import { useColorScheme } from "@/hooks/useColorScheme.web";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 interface MessageProps {
@@ -10,21 +9,19 @@ interface MessageProps {
 export const Message = ({ text, isVisible, type }: MessageProps) => {
   if (!isVisible) return null;
 
-  const colorScheme = useColorScheme();
-
   let color;
   switch (type) {
     case "warning":
-      color = colorScheme === "dark" ? "#FF8C00" : "#FFA12E";
+      color = "#FFA12E";
       break;
     case "error":
-      color = colorScheme === "dark" ? "#FF4C61" : "#FF2E54";
+      color = "#FF2E54";
       break;
     case "success":
-      color = colorScheme === "dark" ? "#32CD32" : "#3CB371";
+      color = "#3CB371";
       break;
     case "info":
-      color = colorScheme === "dark" ? "#1E90FF" : "#6495ED";
+      color = "#6495ED";
       break;
   }
 

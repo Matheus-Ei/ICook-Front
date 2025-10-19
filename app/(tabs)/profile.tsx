@@ -1,12 +1,12 @@
+import { Text } from "@/components/Text";
+import { View } from "@/components/View";
 import { StyleSheet } from "react-native";
-
-import Themed from "@/components/Themed";
 
 export default function TabOneScreen() {
   return (
-    <Themed.View style={styles.container}>
-      <Themed.Text style={styles.title}>User profile</Themed.Text>
-    </Themed.View>
+    <View style={styles.container}>
+      <Text style={styles.title}>User profile</Text>
+    </View>
   );
 }
 

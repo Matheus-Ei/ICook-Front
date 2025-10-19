@@ -1,0 +1,23 @@
+import { TouchableOpacity as DefaultTouchableOpacity } from "react-native";
+
+type TouchableOpacityProps = React.ComponentProps<typeof DefaultTouchableOpacity>;
+
+export function TouchableOpacity(props: TouchableOpacityProps) {
+  const { style, ...otherProps } = props;
+
+  return (
+    <DefaultTouchableOpacity
+      style={[
+        {
+          width: 80,
+          height: 30,
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 4,
+        },
+        style,
+      ]}
+      {...otherProps}
+    />
+  );
+}

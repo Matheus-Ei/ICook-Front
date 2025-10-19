@@ -1,11 +1,15 @@
 import { StyleSheet } from "react-native";
 import logo from "@/assets/images/icon.png";
 
-import Themed from "@/components/Themed";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { userService } from "@/services/UserService";
 import { Message } from "@/components/Message";
+import { View } from "@/components/View";
+import { Image } from "@/components/Image";
+import { TextInput } from "@/components/TextInput";
+import { TouchableOpacity } from "@/components/TouchableOpacity";
+import { Text } from "@/components/Text";
 
 export default function SignupScreen() {
   const [name, setName] = useState("");
@@ -26,34 +30,34 @@ export default function SignupScreen() {
   };
 
   return (
-    <Themed.View style={styles.container}>
-      <Themed.Image source={logo} style={{ width: 300, height: 300 }} />
+    <View style={styles.container}>
+      <Image source={logo} style={{ width: 300, height: 300 }} />
 
-      <Themed.TextInput
+      <TextInput
         style={styles.input}
         placeholder="Name"
         onChangeText={setName}
       />
 
-      <Themed.TextInput
+      <TextInput
         style={styles.input}
         placeholder="Email"
         onChangeText={setEmail}
       />
 
-      <Themed.TextInput
+      <TextInput
         style={styles.input}
         placeholder="Password"
         secureTextEntry
         onChangeText={setPassword}
       />
 
-      <Themed.TouchableOpacity onPress={handleSignup}>
-        <Themed.Text>Signup</Themed.Text>
-      </Themed.TouchableOpacity>
+      <TouchableOpacity onPress={handleSignup}>
+        <Text>Signup</Text>
+      </TouchableOpacity>
 
       <Message text={error} type={"error"} isVisible={!!error} />
-    </Themed.View>
+    </View>
   );
 }
 

@@ -1,10 +1,8 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs, useRouter } from "expo-router";
-import { Pressable } from "react-native";
+import { Tabs, useRouter } from "expo-router";
 
 import Colors from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { useClientOnlyValue } from "@/hooks/useClientOnlyValue";
 import { storageUtil } from "@/utils/StorageUtil";
 
@@ -16,8 +14,6 @@ function TabBarIcon(props: {
 }
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   const router = useRouter();
 
   // Check for userEmail in storage to determine if user is logged in
@@ -30,7 +26,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors.tint,
         headerShown: useClientOnlyValue(false, true),
       }}
     >
