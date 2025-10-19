@@ -1,4 +1,5 @@
-import { requestUtil } from "@/utils/RequestUtil";
+import { User } from "@/app/(tabs)/Profile";
+import { requestUtil, ReturnType } from "@/utils/RequestUtil";
 
 class UserService {
   public async login(email: string, password: string): Promise<boolean> {
@@ -18,6 +19,10 @@ class UserService {
   ) {
     return await requestUtil.post("users", { name, email, password });
   }
+
+  public async getUserProfile(): ReturnType<User> {
+    return await requestUtil.get<User>("users");
+  } 
 }
 
 export const userService = new UserService();

@@ -1,4 +1,5 @@
-import { TextInput as DefaultTextInput } from "react-native";
+import Colors from "@/constants/Colors";
+import { TextInput as DefaultTextInput, StyleSheet } from "react-native";
 
 type TextInputProps = React.ComponentProps<typeof DefaultTextInput> 
 
@@ -7,16 +8,16 @@ export function TextInput(props: TextInputProps) {
 
   return (
     <DefaultTextInput
-      style={[
-        {
-          borderRadius: 4,
-          outline: "none",
-          borderWidth: 1,
-          paddingHorizontal: 10,
-        },
-        style,
-      ]}
+      style={[styles.textInput, style]}
       {...otherProps}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  textInput: {
+    borderRadius: 4,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+  },
+});

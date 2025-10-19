@@ -41,7 +41,7 @@ class RequestUtil {
 
     try {
       const response = await axios.get(url, { withCredentials: true });
-      return await response.data;
+      return await response.data.resource;
     } catch (error) {
       this.treatError(error as AxiosError);
     }

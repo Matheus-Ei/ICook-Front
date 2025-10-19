@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 import logo from "@/assets/images/icon.png";
 
-import { useLogin } from "@/hooks/useLogin";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+import { userService } from "@/services/UserService";
 import { Message } from "@/components/Message";
 import { View } from "@/components/View";
 import { Image } from "@/components/Image";
@@ -11,29 +11,33 @@ import { TextInput } from "@/components/TextInput";
 import { TouchableOpacity } from "@/components/TouchableOpacity";
 import { Text } from "@/components/Text";
 
-export default function LoginScreen() {
+export default function SignupScreen() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const userData = useLogin();
   const router = useRouter();
 
-  const handleLogin = async () => {
-    const response = await userData.makeLogin(email, password);
-
-    if (response.success) {
-      router.replace("/forYou");
-      return;
+  const handleSignup = async () => {
+    try {
+      await userService.signup(name, email, password);
+      router.replace("/Login");
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(error.message);
     }
-
-    setError(response.message || "Login failed");
   };
 
   return (
     <View style={styles.container}>
       <Image source={logo} style={{ width: 300, height: 300 }} />
 
+      <TextInput
+        style={styles.input}
+        placeholder="Name"
+        onChangeText={setName}
+      />
 
       <TextInput
         style={styles.input}
@@ -48,18 +52,8 @@ export default function LoginScreen() {
         onChangeText={setPassword}
       />
 
-      <TouchableOpacity onPress={handleLogin}>
-        <Text>Login</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        onPress={() => router.push("/signup")}
-        style={styles.signupLinkContainer}
-      >
-        <Text>
-          Don't have an account?
-          <Text style={styles.boldSignupLink}>Sign up</Text>
-        </Text>
+      <TouchableOpacity onPress={handleSignup}>
+        <Text>Signup</Text>
       </TouchableOpacity>
 
       <Message text={error} type={"error"} isVisible={!!error} />
@@ -74,23 +68,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
   },
-
   input: {
     width: "80%",
     height: 45,
-  },
-
-  signupLinkContainer: {
-    marginTop: 10,
-    backgroundColor: "transparent",
-    width: "60%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
-  boldSignupLink: {
-    marginLeft: 5,
-    fontWeight: "bold",
-    textDecorationLine: "underline",
   },
 });

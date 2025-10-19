@@ -2,10 +2,10 @@ import { Text } from "@/components/Text";
 import { View } from "@/components/View";
 import { StyleSheet } from "react-native";
 
-export default function TabOneScreen() {
+export default function ForYouTab() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>User profile</Text>
+      <Text text="Tab One Screen" />
     </View>
   );
 }
@@ -16,10 +16,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
+
   separator: {
     marginVertical: 30,
     height: 1,

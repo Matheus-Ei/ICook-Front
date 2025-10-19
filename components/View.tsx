@@ -1,9 +1,16 @@
-import { View as DefaultView } from "react-native";
+import Colors from "@/constants/Colors";
+import { View as DefaultView, StyleSheet } from "react-native";
 
 type ViewProps = React.ComponentProps<typeof DefaultView>;
 
 export function View(props: ViewProps) {
   const { style, ...otherProps } = props;
 
-  return <DefaultView style={[{}, style]} {...otherProps} />;
+  return <DefaultView style={[styles.view, style]} {...otherProps} />;
 }
+
+const styles = StyleSheet.create({
+  view: {
+    backgroundColor: Colors.base100,
+  },
+});

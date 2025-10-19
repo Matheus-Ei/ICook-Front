@@ -1,17 +1,11 @@
 import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs, useRouter } from "expo-router";
 
 import Colors from "@/constants/Colors";
 import { useClientOnlyValue } from "@/hooks/useClientOnlyValue";
 import { storageUtil } from "@/utils/StorageUtil";
+import { TabBarIcon } from "./TabBarIcon";
 
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
 
 export default function TabLayout() {
   const router = useRouter();
@@ -19,19 +13,19 @@ export default function TabLayout() {
   // Check for userEmail in storage to determine if user is logged in
   storageUtil.getItem("userEmail").then((value) => {
     if (!value) {
-      router.replace("/login");
+      router.replace("/Login");
     }
   });
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors.tint,
+        tabBarActiveTintColor: Colors.primary,
         headerShown: useClientOnlyValue(false, true),
       }}
     >
       <Tabs.Screen
-        name="forYou"
+        name="ForYou/index"
         options={{
           title: "",
           headerTitle: "For you",
@@ -40,11 +34,11 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="profile"
+        name="Profile/index"
         options={{
           title: "",
           headerTitle: "Profile",
-          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color}/>,
         }}
       />
     </Tabs>
