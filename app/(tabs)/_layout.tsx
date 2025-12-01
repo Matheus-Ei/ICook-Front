@@ -34,6 +34,15 @@ const TabLayout = () => {
       />
 
       <Tabs.Screen
+        name="Feed/index"
+        options={{
+          title: "",
+          headerTitle: "Feed",
+          tabBarIcon: ({ color }) => <TabBarIcon name="video-camera" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
         name="Profile/index"
         options={{
           title: "",
