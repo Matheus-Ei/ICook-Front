@@ -3,7 +3,7 @@ import { View as DefaultView, StyleSheet } from "react-native";
 
 type ViewProps = React.ComponentProps<typeof DefaultView>;
 
-export function View(props: ViewProps) {
+export const View = (props: ViewProps) => {
   const { style, ...otherProps } = props;
 
   return <DefaultView style={[styles.view, style]} {...otherProps} />;

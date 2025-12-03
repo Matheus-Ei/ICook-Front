@@ -3,7 +3,7 @@ import { TouchableOpacity as DefaultTouchableOpacity, StyleSheet } from "react-n
 
 type TouchableOpacityProps = React.ComponentProps<typeof DefaultTouchableOpacity>;
 
-export function TouchableOpacity(props: TouchableOpacityProps) {
+export const TouchableOpacity = (props: TouchableOpacityProps) => {
   const { style, ...otherProps } = props;
 
   return (
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   touchableOpacity: {
     width: 80,
     height: 30,
+    display: "flex",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 4,

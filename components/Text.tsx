@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   container: {
+    backgroundColor: "transparent",
     display: "flex",
     flexDirection: "column",
     gap: 5,

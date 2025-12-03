@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native";
 
 import { userService } from "@/services/UserService";
 import { recipeService } from "@/services/RecipeService";
-
-import { LoadingIndicator } from "@/components/Loader";
+import { Loader } from "@/components/Loader";
 import { Message } from "@/components/Message";
 
 import { UserProfileCard } from "./UserProfileCard";
@@ -17,7 +16,7 @@ export interface User {
   followersCount: number;
 }
 
-export default function ProfileTab() {
+const ProfileTab = () => {
   const [user, setUser] = useState<User | null>(null);
   const [recipes, setRecipes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,8 +40,21 @@ export default function ProfileTab() {
     fetchData();
   }, []);
 
-  if (isLoading) return <LoadingIndicator />;
-  if (error) return <Message text={error} type="error" isVisible />;
+  const renderProfile = () => {
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    if (error) {
+      return <Message text={error} type='error' isVisible={!!error} />;
+    }
+
+    if (user) {
+      return <UserProfileCard user={user} />;
+    }
+
+    return null;
+  };
 
   return (
     <View style={styles.container}>
@@ -67,3 +79,5 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+export default ProfileTab;

@@ -10,8 +10,9 @@ import { Image } from "@/components/Image";
 import { TextInput } from "@/components/TextInput";
 import { TouchableOpacity } from "@/components/TouchableOpacity";
 import { Text } from "@/components/Text";
+import Colors from "@/constants/Colors";
 
-export default function LoginScreen() {
+const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -49,17 +50,14 @@ export default function LoginScreen() {
       />
 
       <TouchableOpacity onPress={handleLogin}>
-        <Text>Login</Text>
+        Login
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => router.push("/Signup")}
         style={styles.signupLinkContainer}
       >
-        <Text>
-          Don't have an account?
-          <Text style={styles.boldSignupLink}>Sign up</Text>
-        </Text>
+        Don't have an account? Sign Up
       </TouchableOpacity>
 
       <Message text={error} type={"error"} isVisible={!!error} />
@@ -86,6 +84,7 @@ const styles = StyleSheet.create({
     width: "60%",
     alignItems: "center",
     justifyContent: "center",
+    color: Colors.baseContent,
   },
 
   boldSignupLink: {
@@ -94,3 +93,5 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
 });
+
+export default LoginScreen;

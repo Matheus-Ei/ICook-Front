@@ -3,10 +3,10 @@ import { View } from "@/components/View";
 import { StatusBar } from "expo-status-bar";
 import { Platform, StyleSheet } from "react-native";
 
-export default function ModalScreen() {
+export const ModalScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Modal</Text>
+      <Text style={styles.title} text="Modal" />
 
       <View style={styles.separator} />
 

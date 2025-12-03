@@ -7,7 +7,7 @@ import { storageUtil } from "@/utils/StorageUtil";
 import { TabBarIcon } from "./TabBarIcon";
 
 
-export default function TabLayout() {
+const TabLayout = () => {
   const router = useRouter();
 
   // Check for userEmail in storage to determine if user is logged in
@@ -34,6 +34,15 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
+        name="Feed/index"
+        options={{
+          title: "",
+          headerTitle: "Feed",
+          tabBarIcon: ({ color }) => <TabBarIcon name="video-camera" color={color} />,
+        }}
+      />
+
+      <Tabs.Screen
         name="Profile/index"
         options={{
           title: "",
@@ -44,3 +53,5 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+export default TabLayout;

@@ -1,6 +1,6 @@
 import { ScrollViewStyleReset } from "expo-router/html";
 
-export default function Root({ children }: { children: React.ReactNode }) {
+const Root = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <head>
@@ -29,3 +29,5 @@ body {
     background-color: #000;
   }
 }`;
+
+export default Root;
