@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
+
 import { userService } from "@/services/UserService";
+import { recipeService } from "@/services/RecipeService";
+
 import { LoadingIndicator } from "@/components/Loader";
 import { Message } from "@/components/Message";
+
 import { UserProfileCard } from "./UserProfileCard";
 import { View } from "@/components/View";
 import Colors from "@/constants/Colors";
@@ -10,57 +14,48 @@ import Colors from "@/constants/Colors";
 export interface User {
   name: string;
   email: string;
-  followersCount: string;
+  followersCount: number;
 }
 
 export default function ProfileTab() {
   const [user, setUser] = useState<User | null>(null);
+  const [recipes, setRecipes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchUserData = async () => {
-    setIsLoading(true);
-    setError(null);
-
+  const fetchData = async () => {
     try {
-      const response = await userService.getUserProfile()
+      const userResponse = await userService.getUserProfile();
+      const recipesResponse = await recipeService.getAll();
 
-      if (response) {
-        setUser(response);
-      } else {
-        throw new Error("Invalid data structure from API.");
-      }
-
-    } catch(err: any) {
-        setError(err.message || "An unknown error occurred.");
+      if (userResponse) setUser(userResponse);
+      if (recipesResponse) setRecipes(recipesResponse);
+    } catch (err: any) {
+      setError(err.message || "Erro inesperado");
     }
 
     setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchUserData();
+    fetchData();
   }, []);
 
-  const renderProfile = () => {
-    if (isLoading) {
-      return <LoadingIndicator />;
-    }
-
-    if (error) {
-      return <Message text={error} type='error' isVisible={!!error} />;
-    }
-
-    if (user) {
-      return <UserProfileCard user={user} />;
-    }
-
-    return null;
-  };
+  if (isLoading) return <LoadingIndicator />;
+  if (error) return <Message text={error} type="error" isVisible />;
 
   return (
     <View style={styles.container}>
-      {renderProfile()}
+      {user && (
+        <UserProfileCard
+          user={user}
+          recipes={recipes}
+          onUserUpdated={setUser}
+          onRecipeDeleted={(id) =>
+            setRecipes((prev) => prev.filter((r) => r.id !== id))
+          }
+        />
+      )}
     </View>
   );
 }
@@ -72,4 +67,3 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
-
